@@ -8,10 +8,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    TextView txtdb_email;
+    TextView txtdb_passwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,18 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         });
+
+
+
+        txtdb_email = (TextView)findViewById(R.id.txtdbEmail);
+        txtdb_passwd = (TextView)findViewById(R.id.txtdbPasswd);
+        Db_Users objusuarios = new Db_Users(this);
+        ArrayList<Tabla> tbl = objusuarios.getUsuariosA();
+
+        Tabla p = tbl.get(0);
+        txtdb_email.setText(p.getEmail());
+        txtdb_passwd.setText(p.getPassword());
+
 
 
 

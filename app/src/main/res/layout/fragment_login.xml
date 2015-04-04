@@ -83,4 +83,22 @@
         android:layout_alignBottom="@+id/textView_registrarse"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="email"
+        android:id="@+id/txtdbEmail"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView_recordar"
+        android:layout_toEndOf="@+id/textView_recordar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="contraseña"
+        android:id="@+id/txtdbPasswd"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/login_editText_email"
+        android:layout_toEndOf="@+id/login_editText_email" />
 </RelativeLayout>
