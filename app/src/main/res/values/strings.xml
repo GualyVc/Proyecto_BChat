@@ -11,4 +11,5 @@
     <string name="textView_registrase">Registrarse</string>
     <string name="textView_olvido">Olvido su contraseña?</string>
     <string name="Login_button_ingresarconface">Iniciar con Facebook</string>
+    <string name="title_activity_splash_screen">splashScreen</string>
 </resources>
