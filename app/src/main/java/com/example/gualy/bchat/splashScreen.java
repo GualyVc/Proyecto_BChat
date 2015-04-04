@@ -61,7 +61,7 @@ public class splashScreen extends ActionBarActivity {
         @Override
         protected void onPreExecute() {
             dialog = new ProgressDialog(splashScreen.this);
-            dialog.setTitle("ESTO ES EL TITULO");
+            dialog.setTitle("INICIALIZANDO");
             dialog.setMessage("INSERTANDO EN BD");
             dialog.show();
 
@@ -88,6 +88,13 @@ public class splashScreen extends ActionBarActivity {
                 Tabla usr = new Tabla();
                 usr = usuarios.get(i);
                 helper.insertarUsuarios(usr);
+                // Da un pequeño retardo para mostrar inicializacion
+//                try {
+//                    Thread.sleep(500);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+
             }
             return null;
         }
