@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -22,6 +25,28 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });*/
+
+        Button boton = (Button)findViewById(R.id.login_button_ingresar);
+        boton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                String usuario = ((EditText)findViewById(R.id.login_editText_email)).getText().toString();
+                String password = ((EditText)findViewById(R.id.login_editText_password)).getText().toString();
+
+                if (usuario.equals("admin")&& password.equals("admin"))
+                {
+                    Intent nuevoform = new Intent(MainActivity.this,LoginActivity.class);
+                    startActivity(nuevoform);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Usuario Incorrecto",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+
     }
 
 
