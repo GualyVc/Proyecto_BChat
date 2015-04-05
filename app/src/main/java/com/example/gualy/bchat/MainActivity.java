@@ -73,7 +73,7 @@ public class MainActivity extends ActionBarActivity {
 
               //  new BuscarTask().execute();
 
-                if (usuario.equals("a")&& password.equals("b"))
+                if (usuario.equals(txtdb_email.getText())&& password.equals(txtdb_passwd.getText()))
                 {
                     Intent nuevoform = new Intent(MainActivity.this,LoginActivity.class);
                     startActivity(nuevoform);
