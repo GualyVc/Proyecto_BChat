@@ -1,5 +1,8 @@
 package com.example.gualy.bchat;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 /**
  * Created by GUALY on 04/04/2015.
  */
@@ -19,6 +22,7 @@ public class Tabla {
     private String email;
     private String password;
     private int estado;
+    private SQLiteDatabase db;
 
     public Tabla(String email, String password) {
         this.email = email;
@@ -59,5 +63,16 @@ public class Tabla {
 
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+
+
+    public Cursor cargarCursorContactos() {
+        String[] columnas = new String[]{FIELD_ID,FIELD_email,FIELD_password,FIELD_ESTADO};
+        return db.query(TABLE_NAME, columnas, null, null, null, null, null);
+    }
+
+    public Cursor buscarContacto(String nombre) {
+        String[] columnas = new String[]{FIELD_ID,FIELD_email,FIELD_password,FIELD_ESTADO};
+        return db.query(TABLE_NAME,columnas,FIELD_email + "=?",new String[]{nombre},null,null,null);
     }
 }

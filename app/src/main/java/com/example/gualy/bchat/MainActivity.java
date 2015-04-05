@@ -1,6 +1,8 @@
 package com.example.gualy.bchat;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +19,12 @@ import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
 
+    private Cursor cursor;
+    private Tabla manager;
+    private SimpleCursorAdapter adapter;
     TextView txtdb_email;
     TextView txtdb_passwd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,24 +42,12 @@ public class MainActivity extends ActionBarActivity {
             }
         });*/
 
-        Button boton = (Button)findViewById(R.id.login_button_ingresar);
-        boton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                String usuario = ((EditText)findViewById(R.id.login_editText_email)).getText().toString();
-                String password = ((EditText)findViewById(R.id.login_editText_password)).getText().toString();
+//        final String[] from = new String[]{manager.FIELD_email};
+//        int[] to = new int[]{android.R.id.text1, android.R.id.text2};
+//
+//        cursor = manager.cargarCursorContactos();
+//        adapter = new SimpleCursorAdapter(this,android.R.layout.two_line_list_item,cursor,from,to,0);
 
-                if (usuario.equals("admin")&& password.equals("admin"))
-                {
-                    Intent nuevoform = new Intent(MainActivity.this,LoginActivity.class);
-                    startActivity(nuevoform);
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),"Usuario Incorrecto",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
 
 
@@ -67,6 +62,28 @@ public class MainActivity extends ActionBarActivity {
 
 
 
+
+        Button boton = (Button)findViewById(R.id.login_button_ingresar);
+        boton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                String usuario = ((EditText)findViewById(R.id.login_editText_email)).getText().toString();
+                String password = ((EditText)findViewById(R.id.login_editText_password)).getText().toString();
+               // String usuario2 =  txtdb_email.setText(p.getEmail());
+
+              //  new BuscarTask().execute();
+
+                if (usuario.equals("a")&& password.equals("b"))
+                {
+                    Intent nuevoform = new Intent(MainActivity.this,LoginActivity.class);
+                    startActivity(nuevoform);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Usuario Incorrecto",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 
@@ -92,4 +109,32 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+//    private class BuscarTask extends AsyncTask {
+//        //se ejecuta en primer plano
+//        @Override
+//        protected void onPreExecute() {
+//
+//            Toast.makeText(getApplicationContext(), "Buscando...", Toast.LENGTH_SHORT).show();
+//        }
+//        //se ejecuta en segundo plano
+//        @Override
+//        protected Object doInBackground(Object[] params) {
+//            cursor = manager.buscarContacto(txtdb_email.getText().toString());
+//
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Object o) {
+//            adapter.changeCursor(cursor);
+//            Toast.makeText(getApplicationContext(),"Finalizando...",Toast.LENGTH_SHORT).show();
+//        }
+//
+//
+//    }
+
+
+
 }
