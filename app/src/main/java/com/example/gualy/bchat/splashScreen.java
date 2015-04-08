@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
+//Carga una vez y llena el registro de datos
 public class splashScreen extends ActionBarActivity {
 
     private boolean estado;
@@ -22,6 +22,7 @@ public class splashScreen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        //Si hemos insertado o no registro
         cargarPreferencias();
         if (estado)
         {
@@ -31,7 +32,9 @@ public class splashScreen extends ActionBarActivity {
         }
         else
         {
+            //Llamamos al proceso carga
             ProcesoCarga proceso = new ProcesoCarga();
+            //Ejecutamos el AsyncTask
             proceso.execute();
         }
 
@@ -40,6 +43,7 @@ public class splashScreen extends ActionBarActivity {
     private void cargarPreferencias()
     {
         SharedPreferences mispreferencias = getSharedPreferences("preferencias", Context.MODE_PRIVATE);
+        //estado = mispreferencias.getBoolean("isLoad",false);
         mispreferencias.getBoolean("isLoad",false);
     }
 
@@ -51,11 +55,16 @@ public class splashScreen extends ActionBarActivity {
         editor.commit();
     }
 
+    //Se implementa
+    //Hilo
     private class ProcesoCarga extends AsyncTask<Void,Void,Void>
     {
         ProgressDialog dialog;
+        //INSERTA MAS REGISTROS en el arraylist
         ArrayList<Tabla> usuarios = new ArrayList<Tabla>(Arrays.asList(
-                new Tabla("admin","pass")
+                new Tabla("admin","pass"),
+                new Tabla("juan","perez")
+
 
         ));
         @Override
@@ -79,8 +88,10 @@ public class splashScreen extends ActionBarActivity {
             }
         }
 
+        //Para recorrer el arralist de los usuarios
         @Override
         protected Void doInBackground(Void... params) {
+            //Instancia la TABLA
             Db_Users helper =new Db_Users(splashScreen.this);
 
             for (int i = 0 ; i<usuarios.size();i++)
