@@ -18,6 +18,7 @@ public class MainActivity extends ActionBarActivity {
 
     TextView txtdb_email;
     TextView txtdb_passwd;
+    ArrayList<Tabla> tbl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +40,10 @@ public class MainActivity extends ActionBarActivity {
         txtdb_email = (TextView)findViewById(R.id.txtdbEmail);
         txtdb_passwd = (TextView)findViewById(R.id.txtdbPasswd);
         Db_Users objusuarios = new Db_Users(this);
-        ArrayList<Tabla> tbl = objusuarios.getUsuariosA();
+        tbl = objusuarios.getUsuariosA();
 
 
-        for (int i = 0 ; i<tbl.size();i++)
-        {
-            Tabla u = new Tabla();
-            u = tbl.get(i);
-           // helper.insertarUsuarios(usr);
-            txtdb_email.setText(u.getEmail());
-            txtdb_passwd.setText(u.getPassword());
-        }
 
-        /*Tabla p = tbl.get(1);
-        txtdb_email.setText(p.getEmail());
-        txtdb_passwd.setText(p.getPassword());*/
 
 
         Button boton = (Button)findViewById(R.id.login_button_ingresar);
@@ -63,24 +53,27 @@ public class MainActivity extends ActionBarActivity {
                 String usuario = ((EditText)findViewById(R.id.login_editText_email)).getText().toString();
                 String password = ((EditText)findViewById(R.id.login_editText_password)).getText().toString();
 
-                if (usuario.equals(txtdb_email.getText())&& password.equals(txtdb_passwd.getText()))
+                for (int i = 0 ; i<tbl.size();i++)
                 {
-                    Intent nuevoform = new Intent(MainActivity.this,LoginActivity.class);
-                    startActivity(nuevoform);
+                    Tabla u = new Tabla();
+                    u = tbl.get(i);
+                    txtdb_email.setText(u.getEmail());
+                    txtdb_passwd.setText(u.getPassword());
+
+                    if (usuario.equals(txtdb_email.getText())&& password.equals(txtdb_passwd.getText()))
+                    {
+                        Intent nuevoform = new Intent(MainActivity.this,LoginActivity.class);
+                        startActivity(nuevoform);
+                    }
+//                    else
+//                    {
+//                        Toast.makeText(getApplicationContext(),"Usuario Incorrecto",Toast.LENGTH_SHORT).show();
+//                    }
                 }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),"Usuario Incorrecto",Toast.LENGTH_SHORT).show();
-                }
+
+
             }
         });
-
-
-
-
-
-
-
 
     }
 
