@@ -1,16 +1,25 @@
 package com.example.gualy.bchat;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class RegisterActivity extends ActionBarActivity {
+    String reg_usuario, reg_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,27 +29,37 @@ public class RegisterActivity extends ActionBarActivity {
 
     public void clicCrearCuenta(View view)
     {
+        reg_usuario = ((EditText)findViewById(R.id.register_editText_email)).getText().toString();
+        reg_password = ((EditText)findViewById(R.id.register_editText_passwd)).getText().toString();
+
+        //Llamamos al proceso carga
+        ProcesoCarga proceso = new ProcesoCarga();
+        //Ejecutamos el AsyncTask
+        proceso.execute();
+
+
+
         Intent nuevoform = new Intent(RegisterActivity.this,PerfilActivity.class);
         startActivity(nuevoform);
     }
 
     //Para realizar el paso atrás
-    @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Quieres cancelar el registro de usuario");
-        builder.setTitle("Cancelar registro");
-        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-             @Override
-             public void onClick(DialogInterface dialog, int which) {
-                 Intent nuevoform = new Intent(RegisterActivity.this,MainActivity.class);
-                 startActivity(nuevoform);
-             }
-        }
-
-        );
-    }
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setMessage("Quieres cancelar el registro de usuario");
+//        builder.setTitle("Cancelar registro");
+//        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+//             @Override
+//             public void onClick(DialogInterface dialog, int which) {
+//                 Intent nuevoform = new Intent(RegisterActivity.this,MainActivity.class);
+//                 startActivity(nuevoform);
+//             }
+//        }
+//
+//        );
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,4 +82,71 @@ public class RegisterActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+
+
+
+
+
+    private void guardarPreferencias(boolean valor)
+    {
+        SharedPreferences mispreferencias = getSharedPreferences("preferencias", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mispreferencias.edit();
+        editor.putBoolean("isLoad",valor);
+        editor.commit();
+    }
+    //Se implementa
+    //Hilo
+    private class ProcesoCarga extends AsyncTask<Void,Void,Void>
+    {
+
+        ProgressDialog dialog;
+        //INSERTA MAS REGISTROS en el arraylist
+        ArrayList<Tabla> usuarios = new ArrayList<Tabla>(Arrays.asList(
+                new Tabla(reg_usuario, reg_password)
+
+
+        ));
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            guardarPreferencias(true);
+
+                Intent intent = new Intent(RegisterActivity.this,ChatRoomActivity.class);
+                startActivity(intent);
+                finish();
+
+        }
+
+        //Para recorrer el arraylist de los usuarios
+        @Override
+        protected Void doInBackground(Void... params) {
+            //Instancia la TABLA
+            Db_Users helper =new Db_Users(RegisterActivity.this);
+
+            for (int i = 0 ; i<usuarios.size();i++)
+            {
+                Tabla usr = new Tabla();
+                usr = usuarios.get(i);
+                helper.insertarUsuarios(usr);
+                // Da un pequeño retardo para mostrar inicializacion
+//                try {
+//                    Thread.sleep(500);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+
+            }
+            return null;
+        }
+    }
+
+
 }

@@ -60,7 +60,7 @@ public class MainActivity extends ActionBarActivity {
 
                     if (usuario.equals(txtdb_email.getText())&& password.equals(txtdb_passwd.getText()))
                     {
-                        Intent nuevoform = new Intent(MainActivity.this,RegisterActivity.class);
+                        Intent nuevoform = new Intent(MainActivity.this,ChatRoomActivity.class);
                         startActivity(nuevoform);
                     }
 //                    else

@@ -16,4 +16,5 @@
     <string name="login_button_registrarse">Registrarse</string>
     <string name="register_button_crear">Crear cuenta</string>
     <string name="title_activity_perfil">PerfilActivity</string>
+    <string name="title_activity_chat_room">ChatRoomActivity</string>
 </resources>

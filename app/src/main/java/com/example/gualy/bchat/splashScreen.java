@@ -22,6 +22,7 @@ public class splashScreen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
         //Si hemos insertado o no registro
         cargarPreferencias();
         if (estado)
@@ -43,8 +44,8 @@ public class splashScreen extends ActionBarActivity {
     private void cargarPreferencias()
     {
         SharedPreferences mispreferencias = getSharedPreferences("preferencias", Context.MODE_PRIVATE);
-        //estado = mispreferencias.getBoolean("isLoad",false);
-        mispreferencias.getBoolean("isLoad",false);
+        estado = mispreferencias.getBoolean("isLoad",false);
+        //mispreferencias.getBoolean("isLoad",false);    EH CAMBIADO ESTO
     }
 
     private void guardarPreferencias(boolean valor)
@@ -88,7 +89,7 @@ public class splashScreen extends ActionBarActivity {
             }
         }
 
-        //Para recorrer el arralist de los usuarios
+        //Para recorrer el arraylist de los usuarios
         @Override
         protected Void doInBackground(Void... params) {
             //Instancia la TABLA
