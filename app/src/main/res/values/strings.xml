@@ -17,4 +17,13 @@
     <string name="register_button_crear">Crear cuenta</string>
     <string name="title_activity_perfil">PerfilActivity</string>
     <string name="title_activity_chat_room">ChatRoomActivity</string>
+    <string name="perfil_textView_nombre">Nombre:</string>
+    <string name="perfil_textView_edad">Edad:</string>
+    <string name="perfil_textView_sexo">Sexo:</string>
+    <string name="perfil_textView_intereses">Intereses:</string>
+    <string name="perfil_textView_profesion">Profesión:</string>
+    <string name="perfil_textView_idiomas">Idiomas:</string>
+    <string name="perfil_textView_creencias">Creencias Religiosas:</string>
+    <string name="perfil_textView_nacimiento">Fecha de Nacimiento:</string>
+    <string name="perfil_textView_nacio">Nacio en:</string>
 </resources>
