@@ -11,7 +11,7 @@
         android:name="com.example.gualy.bchat.Fragment_Login"
         android:id="@+id/fragment"
         tools:layout="@layout/fragment_login"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

@@ -11,4 +11,9 @@
     <string name="textView_olvido">Olvido su contraseña?</string>
     <string name="Login_button_ingresarconface">Iniciar con Facebook</string>
     <string name="title_activity_splash_screen">BChat</string>
+    <string name="register_button_email">Email</string>
+    <string name="register_button_passwd">Contraseña</string>
+    <string name="login_button_registrarse">Registrarse</string>
+    <string name="register_button_crear">Crear cuenta</string>
+    <string name="title_activity_perfil">PerfilActivity</string>
 </resources>

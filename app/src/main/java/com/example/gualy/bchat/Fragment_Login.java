@@ -26,7 +26,7 @@ public class Fragment_Login extends Fragment {
 //        login_boton_ingresar = (Button)view.findViewById(R.id.login_button_ingresar).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                Intent intent = new Intent (Fragment_Login.this, LoginActivity.class);
+//                Intent intent = new Intent (Fragment_Login.this, RegisterActivity.class);
 //                startActivity(intent);
 //            }
 //        });

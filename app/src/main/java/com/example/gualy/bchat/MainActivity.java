@@ -9,15 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    TextView txtdb_email;
-    TextView txtdb_passwd;
+    TextView txtdb_email, txtdb_passwd;
+    Button boton_ingresar;
     ArrayList<Tabla> tbl;
 
     @Override
@@ -31,7 +30,7 @@ public class MainActivity extends ActionBarActivity {
        /* findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent (MainActivity.this, ChatrooomActivity.class);
                 startActivity(intent);
             }
         });*/
@@ -43,16 +42,15 @@ public class MainActivity extends ActionBarActivity {
         tbl = objusuarios.getUsuariosA();
 
 
+        boton_ingresar = (Button)findViewById(R.id.login_button_ingresar);
 
-
-
-        Button boton = (Button)findViewById(R.id.login_button_ingresar);
-        boton.setOnClickListener(new View.OnClickListener(){
+        boton_ingresar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 String usuario = ((EditText)findViewById(R.id.login_editText_email)).getText().toString();
                 String password = ((EditText)findViewById(R.id.login_editText_password)).getText().toString();
 
+                //Comparamos el usuario a ingresar con los guardados en la DB
                 for (int i = 0 ; i<tbl.size();i++)
                 {
                     Tabla u = new Tabla();
@@ -62,7 +60,7 @@ public class MainActivity extends ActionBarActivity {
 
                     if (usuario.equals(txtdb_email.getText())&& password.equals(txtdb_passwd.getText()))
                     {
-                        Intent nuevoform = new Intent(MainActivity.this,LoginActivity.class);
+                        Intent nuevoform = new Intent(MainActivity.this,RegisterActivity.class);
                         startActivity(nuevoform);
                     }
 //                    else
@@ -75,6 +73,28 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+
+        /*Button boton_registrarse = (Button)findViewById(R.id.login_button_registrarse);
+        boton_registrarse.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent nuevoform = new Intent(MainActivity.this,RegisterActivity.class);
+            startActivity(nuevoform);
+
+        }
+
+        }
+
+        );*/
+
+
+
+    }
+
+    public void clicRegistrarse(View view)
+    {
+        Intent nuevoform = new Intent(MainActivity.this,RegisterActivity.class);
+        startActivity(nuevoform);
     }
 
 
