@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,37 +28,30 @@ public class RegisterActivity extends ActionBarActivity {
         setContentView(R.layout.activity_register);
     }
 
+
     public void clicCrearCuenta(View view)
     {
         reg_usuario = ((EditText)findViewById(R.id.register_editText_email)).getText().toString();
         reg_password = ((EditText)findViewById(R.id.register_editText_passwd)).getText().toString();
 
-        //Llamamos al proceso carga
-        ProcesoCarga proceso = new ProcesoCarga();
-        //Ejecutamos el AsyncTask
-        proceso.execute();
+        if (!reg_usuario.equals("") && !reg_password.equals(""))
+        {
+            //Llamamos al proceso carga
+            ProcesoCarga proceso = new ProcesoCarga();
+            //Ejecutamos el AsyncTask
+            proceso.execute();
 
-        Intent nuevoform = new Intent(RegisterActivity.this,PerfilActivity.class);
-        startActivity(nuevoform);
+            Intent nuevoform = new Intent(RegisterActivity.this,PerfilActivity.class);
+            startActivity(nuevoform);
+        }else
+        {
+            Toast.makeText(getApplicationContext(), "Ingrese un Email y una Contraseña", Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 
-    //Para realizar el paso atrás
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setMessage("Quieres cancelar el registro de usuario");
-//        builder.setTitle("Cancelar registro");
-//        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-//             @Override
-//             public void onClick(DialogInterface dialog, int which) {
-//                 Intent nuevoform = new Intent(RegisterActivity.this,MainActivity.class);
-//                 startActivity(nuevoform);
-//             }
-//        }
-//
-//        );
-//    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,7 +105,7 @@ public class RegisterActivity extends ActionBarActivity {
         protected void onPostExecute(Void aVoid) {
             guardarPreferencias(true);
 
-                Intent intent = new Intent(RegisterActivity.this,ChatRoomActivity.class);
+                Intent intent = new Intent(RegisterActivity.this,PerfilActivity.class);
                 startActivity(intent);
                 finish();
 
