@@ -41,7 +41,7 @@ public class RegisterActivity extends ActionBarActivity {
             //Ejecutamos el AsyncTask
             proceso.execute();
 
-            Intent nuevoform = new Intent(RegisterActivity.this,PerfilActivity.class);
+            Intent nuevoform = new Intent(RegisterActivity.this,ChatRoomActivity.class);
             startActivity(nuevoform);
         }else
         {
