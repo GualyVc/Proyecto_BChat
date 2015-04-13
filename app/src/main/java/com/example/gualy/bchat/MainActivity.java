@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -96,6 +99,15 @@ public class MainActivity extends ActionBarActivity {
         Intent nuevoform = new Intent(MainActivity.this,RegisterActivity.class);
         startActivity(nuevoform);
     }
+
+    public void clicFace(View view)
+    {
+        Intent nuevoform = new Intent(MainActivity.this,Fragment_Web.class);
+        startActivity(nuevoform);
+
+    }
+
+
 
 
     @Override

@@ -1,5 +1,8 @@
 package com.example.gualy.bchat;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +16,35 @@ public class PerfilActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
     }
+
+
+
+    //Realiza el (Paso Atrás)
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Quiere cancelar el registro de usuario");
+        builder.setTitle("Cancelar registro");
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent nuevoform = new Intent(PerfilActivity.this,MainActivity.class);
+                startActivity(nuevoform);
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                 dialog.cancel();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+
 
 
     @Override
