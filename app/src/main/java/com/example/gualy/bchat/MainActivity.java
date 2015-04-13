@@ -100,15 +100,6 @@ public class MainActivity extends ActionBarActivity {
         startActivity(nuevoform);
     }
 
-    public void clicFace(View view)
-    {
-        Intent nuevoform = new Intent(MainActivity.this,Fragment_Web.class);
-        startActivity(nuevoform);
-
-    }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
