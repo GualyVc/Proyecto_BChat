@@ -32,10 +32,6 @@
             android:name=".ChatRoomActivity"
             android:label="@string/title_activity_chat_room" >
         </activity>
-        <activity
-            android:name=".Activity"
-            android:label="@string/title_activity_" >
-        </activity>
     </application>
 
 </manifest>

@@ -27,5 +27,4 @@
     <string name="perfil_textView_nacimiento">Fecha de Nacimiento:</string>
     <string name="perfil_textView_nacio">Nacio en:</string>
     <string name="title_activity_web">WebActivity</string>
-    <string name="title_activity_">Activity</string>
 </resources>
