@@ -1,12 +1,16 @@
 package com.example.gualy.bchat;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class ChatRoomActivity extends ActionBarActivity {
+public class ChatRoomActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,33 @@ public class ChatRoomActivity extends ActionBarActivity {
         return true;
     }
 
+    //Realiza el (Paso Atrás)
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Finalizar la sesion actual");
+        builder.setTitle("Saliendo");
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent nuevoform = new Intent(ChatRoomActivity.this,MainActivity.class);
+                startActivity(nuevoform);
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -30,9 +61,7 @@ public class ChatRoomActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }

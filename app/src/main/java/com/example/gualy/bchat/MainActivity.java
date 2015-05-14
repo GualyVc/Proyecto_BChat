@@ -12,6 +12,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -65,11 +66,9 @@ public class MainActivity extends ActionBarActivity {
                     {
                         Intent nuevoform = new Intent(MainActivity.this,ChatRoomActivity.class);
                         startActivity(nuevoform);
+
                     }
-//                    else
-//                    {
-//                        Toast.makeText(getApplicationContext(),"Usuario Incorrecto",Toast.LENGTH_SHORT).show();
-//                    }
+
                 }
 
 
@@ -100,12 +99,11 @@ public class MainActivity extends ActionBarActivity {
         startActivity(nuevoform);
     }
 
-//    public void clicFace(View view)
-//    {
-//        Intent nuevoform = new Intent(MainActivity.this,Fragment_Web.class);
-//        startActivity(nuevoform);
-//
-//    }
+    public void clicFace(View view)
+    {
+        Toast.makeText(getApplicationContext(),"Under Construction", Toast.LENGTH_SHORT).show();
+
+    }
 
 
 
@@ -124,10 +122,7 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }

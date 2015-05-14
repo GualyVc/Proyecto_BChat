@@ -1,5 +1,6 @@
 package com.example.gualy.bchat;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-public class RegisterActivity extends ActionBarActivity {
+public class RegisterActivity extends Activity {
     String reg_usuario, reg_password;
 
     @Override
@@ -51,6 +53,32 @@ public class RegisterActivity extends ActionBarActivity {
 
     }
 
+    //Realiza el (Paso Atrás)
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Quiere cancelar el registro de usuario");
+        builder.setTitle("Cancelar registro");
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent nuevoform = new Intent(RegisterActivity.this,MainActivity.class);
+                startActivity(nuevoform);
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+
 
 
     @Override
@@ -67,10 +95,7 @@ public class RegisterActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -105,7 +130,7 @@ public class RegisterActivity extends ActionBarActivity {
         protected void onPostExecute(Void aVoid) {
             guardarPreferencias(true);
 
-                Intent intent = new Intent(RegisterActivity.this,PerfilActivity.class);
+                Intent intent = new Intent(RegisterActivity.this,ChatRoomActivity.class);
                 startActivity(intent);
                 finish();
 
